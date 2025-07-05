@@ -2,14 +2,37 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>FHEVM Private Voting</title>
-  <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"></script>
+  <title>FHE Calculator</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    input, button {
+      padding: 10px;
+      margin: 10px;
+      font-size: 18px;
+    }
+    .box {
+      margin-top: 20px;
+      padding: 15px;
+      border: 1px solid #ccc;
+      display: inline-block;
+      border-radius: 8px;
+      background: #f9f9f9;
+    }
+  </style>
 </head>
 <body>
-  <h1>🗳️ Private Voting using FHEVM</h1>
-  <button onclick="vote(true)">✅ Vote Yes</button>
-  <button onclick="vote(false)">❌ Vote No</button>
-  <p id="status">Waiting for your vote...</p>
+  <h1>🔐 FHE Calculator (Encrypted Addition)</h1>
+  <input type="number" id="num1" placeholder="Enter Number 1">
+  <input type="number" id="num2" placeholder="Enter Number 2">
+  <br>
+  <button onclick="calculate()">🔢 Calculate Encrypted Sum</button>
+
+  <div class="box" id="output"></div>
+
   <script src="script.js"></script>
 </body>
 </html>
