@@ -1,31 +1,40 @@
-function fakeEncrypt(number) {
-  return btoa(number + "-" + Math.random().toString(36).substring(2, 5));
+const choices = ['rock', 'paper', 'scissors'];
+
+function encrypt(choice) {
+  return btoa(choice + '-' + Math.random().toString(36).substring(2, 6));
 }
 
-function fakeDecrypt(encryptedA, encryptedB) {
-  const a = parseInt(atob(encryptedA).split("-")[0]);
-  const b = parseInt(atob(encryptedB).split("-")[0]);
-  return a + b;
+function decrypt(encrypted) {
+  return atob(encrypted).split('-')[0];
 }
 
-function calculate() {
-  const num1 = document.getElementById("num1").value;
-  const num2 = document.getElementById("num2").value;
-  const output = document.getElementById("output");
-
-  if (num1 === "" || num2 === "") {
-    output.innerText = "❌ Please enter both numbers.";
-    return;
+function getWinner(user, computer) {
+  if (user === computer) return "It's a draw!";
+  if (
+    (user === 'rock' && computer === 'scissors') ||
+    (user === 'scissors' && computer === 'paper') ||
+    (user === 'paper' && computer === 'rock')
+  ) {
+    return "🎉 You win!";
   }
+  return "😢 You lose!";
+}
 
-  const enc1 = fakeEncrypt(num1);
-  const enc2 = fakeEncrypt(num2);
+function play(userChoice) {
+  const computerChoice = choices[Math.floor(Math.random() * 3)];
 
-  const result = fakeDecrypt(enc1, enc2);
+  const encryptedUser = encrypt(userChoice);
+  const encryptedComputer = encrypt(computerChoice);
 
-  output.innerHTML = `
-    🔐 Encrypted A: <code>${enc1}</code><br>
-    🔐 Encrypted B: <code>${enc2}</code><br><br>
-    ✅ Decrypted Sum: <strong>${result}</strong>
+  const decryptedUser = decrypt(encryptedUser);
+  const decryptedComputer = decrypt(encryptedComputer);
+
+  const result = getWinner(decryptedUser, decryptedComputer);
+
+  document.getElementById("result").innerHTML = `
+    🔐 Your encrypted choice: <code>${encryptedUser}</code><br>
+    🔐 Computer encrypted choice: <code>${encryptedComputer}</code><br><br>
+    🔓 Decrypted: You chose <b>${decryptedUser}</b>, Computer chose <b>${decryptedComputer}</b><br><br>
+    👉 <strong>${result}</strong>
   `;
 }
