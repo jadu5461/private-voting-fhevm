@@ -11,7 +11,8 @@ async function vote(choice) {
     await provider.send("eth_requestAccounts", []);
     const signer = provider.getSigner();
 
-    const contractAddress = "0x0000000000000000000000000000000000000000"; // placeholder
+    const contractAddress = "0x0000000000000000000000000000000000000000";
+
     const abi = [
       "function vote(bool) public",
       "function getYesCount() view returns (uint)",
