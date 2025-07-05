@@ -2,7 +2,7 @@ async function vote(choice) {
   const status = document.getElementById("status");
 
   if (!window.ethereum) {
-    status.innerText = "🦊 Please install MetaMask";
+    status.innerText = "🦊 Please install MetaMask!";
     return;
   }
 
@@ -11,10 +11,7 @@ async function vote(choice) {
     await provider.send("eth_requestAccounts", []);
     const signer = provider.getSigner();
 
-    // Replace with your contract address
-    const contractAddress = "0x0000000000000000000000000000000000000000";
-
-    // Replace with real ABI later
+    const contractAddress = "0x0000000000000000000000000000000000000000"; // placeholder
     const abi = [
       "function vote(bool) public",
       "function getYesCount() view returns (uint)",
@@ -23,7 +20,7 @@ async function vote(choice) {
 
     const contract = new ethers.Contract(contractAddress, abi, signer);
 
-    status.innerText = "⏳ Sending vote...";
+    status.innerText = "🕒 Sending vote...";
     const tx = await contract.vote(choice);
     await tx.wait();
 
@@ -33,6 +30,6 @@ async function vote(choice) {
     status.innerText = `✅ Yes: ${yes}, ❌ No: ${no}`;
   } catch (err) {
     console.error(err);
-    status.innerText = "⚠️ Error sending vote or reading contract.";
+    status.innerText = "⚠️ Error sending vote.";
   }
 }
