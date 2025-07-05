@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
   <title>FHEVM Private Voting</title>
   <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"></script>
 </head>
 <body>
-  <h1>Vote Privately</h1>
-  <button onclick="vote(true)">Vote Yes</button>
-  <button onclick="vote(false)">Vote No</button>
-  <p id="status"></p>
+  <h1>🗳️ Private Voting using FHEVM</h1>
+
+  <button onclick="vote(true)">✅ Vote Yes</button>
+  <button onclick="vote(false)">❌ Vote No</button>
   
+  <p id="status">Waiting for your vote...</p>
+
   <script src="script.js"></script>
 </body>
 </html>
